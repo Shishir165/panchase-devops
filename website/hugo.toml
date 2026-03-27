@@ -1,0 +1,37 @@
+baseURL = 'https://panchase.com'
+languageCode = 'en-us'
+title = 'Panchase | Biodiversity & Eco Tourism Nepal'
+theme = 'ananke'
+
+[params]
+  description = "Promoting biodiversity, sustainable farming and eco-friendly tourism in the foothills of Pokhara, Nepal"
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 1
+
+[[menu.main]]
+  name = "What We Do"
+  url = "/what-we-do/"
+  weight = 2
+
+[[menu.main]]
+  name = "Gallery"
+  url = "/gallery/"
+  weight = 3
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 4
+
+[[menu.main]]
+  name = "Booking"
+  url = "/booking/"
+  weight = 5
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
