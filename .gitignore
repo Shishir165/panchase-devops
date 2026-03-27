@@ -1,0 +1,18 @@
+# large video files
+*.MOV
+*.mov
+*.mp4
+*.MP4
+*.avi
+*.AVI
+
+# hugo build output - not needed in repo
+website/public/
+
+# terraform state - contains secrets
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# system files
+.DS_Store
