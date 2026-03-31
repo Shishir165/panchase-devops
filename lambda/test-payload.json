@@ -1,0 +1,3 @@
+{
+    "body": "{\"name\":\"Test User\",\"email\":\"ayudh165@gmail.com\",\"phone\":\"123456789\",\"date\":\"2026-04-15\",\"guests\":\"2\",\"message\":\"Test booking from Lambda\"}"
+}
