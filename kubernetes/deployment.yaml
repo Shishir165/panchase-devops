@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: panchase
+  labels:
+    app: panchase
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: panchase
+  template:
+    metadata:
+      labels:
+        app: panchase
+    spec:
+      containers:
+      - name: panchase
+        image: panchase-website:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
