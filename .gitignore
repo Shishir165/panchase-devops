@@ -16,3 +16,5 @@ website/public/
 
 # system files
 .DS_Store
+.env
+lambda/.env
