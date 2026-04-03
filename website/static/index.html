@@ -1153,7 +1153,7 @@
         </div>
     </section>
 
-    <!-- EXPERIENCES WITH TABS -->
+    <!-- EXPERIENCES WITH TABS --
     <section id="experiences" class="experiences">
         <div class="section-label">What We Offer</div>
         <h2 class="section-title">Experiences for every <em>kind of traveller</em></h2>
@@ -1193,7 +1193,8 @@
                                 <div class="exp-price-npr">Rs. 4,700</div>
                                 <div class="exp-price-unit">per person / night</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(3500, 'Panchase Camp Stay 1 Night')">Book — $35</button>
+
                         </div>
                     </div>
                 </div>
@@ -1218,7 +1219,7 @@
                                 <div class="exp-price-npr">Rs. 5,300</div>
                                 <div class="exp-price-unit">per person / night</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(4000, 'Panchase Goth Stay 1 Night')">Book — $40</button>
                         </div>
                     </div>
                 </div>
@@ -1242,7 +1243,8 @@
                                 <div class="exp-price-npr">Rs. 4,000</div>
                                 <div class="exp-price-unit">per person / night</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(3000, 'Panchase Homestay 1 Night')">Book — $30</button>
+
                         </div>
                     </div>
                 </div>
@@ -1262,7 +1264,7 @@
                         <div class="exp-card-label">Classic High Trek</div>
                     </div>
                     <div class="exp-card-body">
-                        <h3 class="exp-card-title">ABC Round Trek</h3>
+                        <h3 class="exp-card-title">ABC base camp Trek</h3>
                         <p class="exp-card-desc">The iconic Annapurna Base Camp trek — through rhododendron forests,
                             terraced villages and glacial moraines to 4,130m beneath the Annapurna massif.</p>
                         <div class="exp-includes">
@@ -1277,7 +1279,8 @@
                                 <div class="exp-price-npr">Rs. 37,500</div>
                                 <div class="exp-price-unit">per person / 7–10 days</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(28000, 'ABC Round Trek 7-10 Days')">Book — $280</button>
+
                         </div>
                     </div>
                 </div>
@@ -1301,7 +1304,8 @@
                                 <div class="exp-price-npr">Rs. 21,500</div>
                                 <div class="exp-price-unit">per person / 4–5 days</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(16000, 'Poon Hill Trek 4-5 Days')">Book — $160</button>
+
                         </div>
                     </div>
                 </div>
@@ -1323,9 +1327,10 @@
                             <div>
                                 <div class="exp-price">$200</div>
                                 <div class="exp-price-npr">Rs. 26,800</div>
-                                <div class="exp-price-unit">per person / 5–7 days</div>
+                                <div class="exp-price-unit">per person / 4-6 days</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(20000, 'Mardi Himal Trek 4-6 Days')">Book — $200</button>
+
                         </div>
                     </div>
                 </div>
@@ -1350,7 +1355,8 @@
                                 <div class="exp-price-npr">Rs. 6,000</div>
                                 <div class="exp-price-unit">per person / full day</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(4500, 'Panchase Full Day Hike')">Book — $45</button>
+
                         </div>
                     </div>
                 </div>
@@ -1370,11 +1376,12 @@
                         </div>
                         <div class="exp-card-footer">
                             <div>
-                                <div class="exp-price">$320</div>
-                                <div class="exp-price-npr">Rs. 42,800</div>
-                                <div class="exp-price-unit">per person / 8–10 days</div>
+                                <div class="exp-price">$125</div>
+                                <div class="exp-price-npr">Rs. 20,000</div>
+                                <div class="exp-price-unit">per person / 4-5 days</div>
                             </div>
-                            <a href="#booking" class="exp-book-btn">Book</a>
+                            <button class="exp-book-btn" onclick="payNow(12500, 'Dhorpatan Wilderness Trek')">Book — $125</button>
+
                         </div>
                     </div>
                 </div>
@@ -1793,6 +1800,41 @@ document.getElementById('booking-form').addEventListener('submit', async functio
             btn.classList.add('active');
         }
     </script>
+
+    <script>
+async function payNow(amount, experience) {
+  try {
+    const btn = event.target;
+    btn.textContent = 'Loading...';
+    btn.disabled = true;
+
+    const response = await fetch('https://gc32u6iwmk.execute-api.us-east-1.amazonaws.com/prod/payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: amount,
+        currency: 'usd',
+        experience: experience,
+        success_url: 'https://panchase.com?payment=success',
+        cancel_url: 'https://panchase.com?payment=cancelled'
+      })
+    });
+
+    const data = await response.json();
+    const result = JSON.parse(data.body);
+
+    if (result.checkout_url) {
+      window.location.href = result.checkout_url;
+    }
+  } catch (error) {
+    alert('Payment error. Please try again.');
+    event.target.textContent = 'Book';
+    event.target.disabled = false;
+  }
+}
+</script>
+
+<!-- NPR payments via Khalti coming soon --
 
 </body>
 
