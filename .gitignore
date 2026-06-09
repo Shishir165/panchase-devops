@@ -18,3 +18,5 @@ website/public/
 .DS_Store
 .env
 lambda/.env
+*.MOV
+*.mov
