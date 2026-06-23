@@ -1,13 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Payment Successful</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | Panchase Eco Tourism</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f1d0f;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: #1a2d18;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        .brand {
+            color: #A8C68F;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #d7d7d7;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background: #243b21;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-home {
+            background: #A8C68F;
+            color: #0f1d0f;
+        }
+
+        .btn-home:hover {
+            opacity: 0.9;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            opacity: 0.9;
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 13px;
+            color: #9fa89c;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1>✅ Payment Successful</h1>
-    <p>Your payment has been received.</p>
+
+    <div class="container">
+
+        <div class="success-icon">✅</div>
+
+        <div class="brand">Panchase Eco Tourism</div>
+
+        <h1>Payment Successful</h1>
+
+        <p>
+            Thank you for your booking.
+            Your payment has been received successfully.
+        </p>
+
+        <div class="info-box">
+            Our team will review your reservation and send a detailed itinerary,
+            trip information and confirmation email shortly.
+        </div>
+
+        <p>
+            If you have any questions, feel free to contact us directly.
+        </p>
+
+        <div class="btn-group">
+            <a href="https://panchase.com" class="btn btn-home">
+                Return to Homepage
+            </a>
+
+            <a href="https://wa.me/9779765645065" class="btn btn-whatsapp">
+                WhatsApp Us
+            </a>
+        </div>
+
+        <div class="footer">
+            Panchase Eco Tourism • Nepal
+        </div>
+
+    </div>
+
 </body>
 
 </html>
