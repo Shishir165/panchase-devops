@@ -1672,10 +1672,19 @@
                                 console.log(paymentResult);
                                 console.log(paymentResult.body);
 
-                                const paymentBody =
-                                    typeof paymentResult.body === 'string'
-                                        ? JSON.parse(paymentResult.body)
-                                        : paymentResult;
+                                let paymentBody;
+
+                                if (paymentResult.body === undefined) {
+
+                                    paymentBody = paymentResult;
+
+                                } else {
+
+                                    console.log("BODY =", paymentResult.body);
+
+                                    paymentBody = JSON.parse(paymentResult.body);
+
+                                }
 
                                 if (paymentBody.success && paymentBody.paymentUrl) {
 
