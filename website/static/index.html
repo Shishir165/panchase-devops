@@ -1881,7 +1881,11 @@
                 );
 
                 const result = await response.json();
-                const data = JSON.parse(result.body);
+
+                const data =
+                    typeof result.body === "string"
+                        ? JSON.parse(result.body)
+                        : result;
 
                 if (data.success) {
                     window.location.href = data.paymentUrl;
