@@ -1624,6 +1624,11 @@
                             placeholder="Any special requests, dietary requirements or questions..."></textarea>
                     </div>
                     <button type="submit" class="form-submit">Send Booking Request</button>
+                    <br><br>
+
+                    <button type="button" class="form-submit" onclick="startTestPayment()">
+                        Test Nabil Payment
+                    </button>
                 </form>
             </div>
             <div class="payment-info">
@@ -1640,10 +1645,16 @@
                 </div>
                 <div class="whatsapp-card">
                     <div class="whatsapp-card-title">Prefer to talk first?</div>
-                    <p class="whatsapp-card-desc">Chat with us directly on WhatsApp. We respond within 2 hours and can
-                        help plan your perfect Panchase experience.</p>
-                    <a href="https://wa.me/4915238702751" class="whatsapp-btn" target="_blank">Chat on WhatsApp</a>
+                    <p class="whatsapp-card-desc">
+                        Chat with us directly on WhatsApp at <strong>+977 9765645065</strong>.
+                        We respond within 2 hours and can help plan your perfect Panchase experience.
+
+                    </p>
+                    <a href="https://wa.me/9779765645065" class="whatsapp-btn" target="_blank">
+                        Chat on WhatsApp
+                    </a>
                 </div>
+
                 <div class="payment-card">
                     <div class="payment-card-title">What's Always Included</div>
                     <div style="font-size: 13px; color: #A8C68F; line-height: 2;">
@@ -1699,7 +1710,8 @@
                         <div class="location-icon">📧</div>
                         <div>
                             <div class="location-item-title">Contact</div>
-                            <div class="location-item-desc">info@panchase.com<br />WhatsApp: +977 XXX XXX XXXX</div>
+                            <div class="location-item-desc">panchaseecotourism@gmail.com<br />WhatsApp: +977 9765645065
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1727,7 +1739,7 @@
         <div>
             <div class="footer-heading">Contact</div>
             <div class="footer-contact">
-                info@panchase.com<br />
+                panchaseecotourism@gmail.com<br />
                 panchase.com<br /><br />
                 Kaski · Syangja · Parbat<br />
                 Pokhara, Nepal
@@ -1747,7 +1759,65 @@
             btn.classList.add('active');
         }
     </script>
+    <script>
+        function showTab(tabName, btn) {
+            document.querySelectorAll('.tab-panel').forEach(function (p) {
+                p.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(function (b) {
+                b.classList.remove('active');
+            });
+            document.getElementById('tab-' + tabName).classList.add('active');
+            btn.classList.add('active');
+        }
 
+        async function startTestPayment() {
+
+            try {
+
+                const response = await fetch(
+                    "https://gc32u6iwmk.execute-api.us-east-1.amazonaws.com/prod/panchase-twec-payment",
+                    {
+                        method: "POST"
+                    }
+                );
+
+                const result = await response.json();
+                const data = JSON.parse(result.body);
+
+                if (data.success) {
+                    window.location.href = data.paymentUrl;
+                } else {
+                    alert("Unable to create payment.");
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert("Connection failed.");
+            }
+
+        }
+    </script>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+        createChat({
+            webhookUrl: 'https://n8n.panchase.com/webhook/d0614b72-6aea-4b07-80f6-fc99451c313c/chat',
+            initialMessages: [
+                'Namaste! 🙏 Welcome to Panchase Eco Tourism.',
+                'How can I help you today? Ask me about treks, stays or bookings!'
+            ],
+            i18n: {
+                en: {
+                    title: 'Panchase Assistant',
+                    subtitle: 'Ask us anything about our experiences',
+                    inputPlaceholder: 'Type your question...',
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
