@@ -1669,6 +1669,9 @@
 
                                 const paymentResult = await paymentResponse.json();
 
+                                console.log(paymentResult);
+                                console.log(paymentResult.body);
+
                                 const paymentBody =
                                     typeof paymentResult.body === 'string'
                                         ? JSON.parse(paymentResult.body)
