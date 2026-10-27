@@ -1609,11 +1609,12 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Preferred Payment</label>
-                            <select class="form-control" name="payment">
-                                <option value="">Select payment</option>
-                                <option value="nabil">International Card (Nabil)</option>
+                            <select class="form-control" name="payment" required>
+                                <option value="nabil" selected>International Card (Nabil Bank)</option>
+                                <!-- Future payment methods:
                                 <option value="bank">Bank Transfer</option>
-
+                                Khalti and eSewa can be re-enabled here when integrated.
+                                -->
                             </select>
                         </div>
                     </div>
@@ -1732,12 +1733,14 @@
                         <span class="payment-badge">NABIL</span>
                         <span class="payment-desc">Visa, Mastercard and international cards via Nabil Bank</span>
                     </div>
+                    <!-- Future payment options — hidden until activated:
                     <div class="payment-option"><span class="payment-badge">KHALTI</span><span
                             class="payment-desc">Nepal digital wallet — fast and instant</span></div>
                     <div class="payment-option"><span class="payment-badge">ESEWA</span><span
                             class="payment-desc">Nepal's most trusted payment gateway</span></div>
                     <div class="payment-option"><span class="payment-badge">BANK</span><span class="payment-desc">Direct
                             transfer — details sent on confirmation</span></div>
+                    -->
                 </div>
                 <div class="whatsapp-card">
                     <div class="whatsapp-card-title">Prefer to talk first?</div>
